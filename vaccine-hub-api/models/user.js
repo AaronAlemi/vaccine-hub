@@ -1,4 +1,5 @@
-const { UnauthorizedError } = require("../utils/errors")
+const db = require("../db")
+const { BadRequestError, UnauthorizedError } = require("../utils/errors")
 
 class User {
     static async login(credentials) {
@@ -16,6 +17,7 @@ class User {
     static async register(credentials) {
         // user should submit email, password, rsvp status, and number of guests
         //if any are missing throw error
+        const requiredFields = ["email", "password"]
 
         // ensure no user exists with that email
         // if one does throw error
